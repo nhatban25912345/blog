@@ -12,7 +12,7 @@ class LoginController {
     }
 
     // [post] /login
-    async access(req, res, next) {
+    async login(req, res, next) {
         try {
             // check if the user exists
             const user = await User.findOne({ username: req.body.username });
