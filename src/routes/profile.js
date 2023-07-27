@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const middleware = require("../app/middleware")
 
-const usersController = require("../app/controllers/UserController");
+const profileController = require("../app/controllers/ProfileController");
 
-router.get('/', usersController.index);
+// console.log(middleware.authenticator.isModerator);
+
+router.get('/', middleware.authenticator.verifyToken, profileController.index);
+// router.get('/', profileController.index);
 
 module.exports = router;

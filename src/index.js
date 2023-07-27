@@ -32,7 +32,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({
     extended: true
 }));
-         app.use(express.json());
+app.use(express.json());
+
+// send token
+
 
 // HTTP logger
 // app.use(morgan('combined'));
@@ -44,13 +47,6 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 
 //Routes init
 route(app);
-
-app.get('/profile', (req, res) => {
-	if (req.query.token != token) {
-		return res.status(401).json({ error: 'Unauthorized' });
-	}
-	return res.json({ user });
-});
 
 
 app.listen(process.env.PORT || 8000, () => console.log(`App listening at http://localhost:${process.env.PORT}`));

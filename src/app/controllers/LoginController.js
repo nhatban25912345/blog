@@ -1,11 +1,9 @@
 const User = require("../models/User");
 const { multipleMongooseToObject } = require("../../util/mongoose");
+const jwt = require("jsonwebtoken");
+const dotenv = require('dotenv');
 
-var token = "abc" + Math.floor(Math.random() * 1000);
-setInterval(() => {
-    token = "abc" + Math.floor(Math.random() * 1000);
-}, 1200000);
-
+dotenv.config();
 class LoginController {
 
     // [GET] /login
@@ -22,15 +20,17 @@ class LoginController {
               //check if password matches
               const result = req.body.password === user.password;
               if (result) {
-                res.json(token);
+                const token = jwt.sign(user.id, process.env.JWT_SECRET_KEY);
+                res.json({token})
               } else {
-                res.status(400).json({ error: "password doesn't match" });
+                res.status(404).json({ error: "password doesn't match" });
               }
             } else {
+              console.log(req.body);
               res.status(400).json({ error: "User doesn't exist" });
             }
           } catch (error) {
-            res.status(400).json({ error: "lỗi ở cuối" });
+            res.status(406).json({ error: "lỗi ở cuối" });
           }
     }
 }   
