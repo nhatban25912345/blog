@@ -7,16 +7,17 @@ dotenv.config();
 
 verifyToken = (req, res, next) => {
   // test
-  const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMDdmMzBkMTllYTkyODhkZDViODY1.nsj-LQDVeQ4oRRZa7JyhRkeBuegcRtiRPd26y94fBOY";
-  
+  const token = { token:"eyJhbGciOiJIUzI1NiJ9.NjRjMmQ0MDk0YjBmNTdjZGNmNTI5N2Vj.PpbwcOPt03UejJ2rKe6AVr4uhUKnCsO04LZx8_PHFbw",};
+  // const token = { token:"" };
+
   // console.log(req);
-  // let token = req.session.token;
+  // let token = req.headers.token;
 
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
   }
 
-  jwt.verify(token,
+  jwt.verify(token.token,
             process.env.JWT_SECRET_KEY,
             (err, decoded) => {
               if (err) {
@@ -24,7 +25,8 @@ verifyToken = (req, res, next) => {
                   message: "Unauthorized!",
                 });
               }
-              req.userId = decoded.id;
+              req.userId = decoded;
+              console.log("---Take idUser at authenticator--------------");
               console.log(req.userId);
               next();
             });

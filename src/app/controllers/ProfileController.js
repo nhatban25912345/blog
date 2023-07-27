@@ -5,8 +5,10 @@ class ProfileController {
 
     // [GET] /user
     async index(req, res, next) {
-
-      const user = await User.findOne({ _id: req.body.userId })
+      const user = await User.findOne({ _id: req.userId })
+      console.log("");
+      console.log("---Take user at ProfileController--------------");
+      console.log(user);
       return res.json(user);
         
         // if (req.headers.token != token) {
@@ -15,7 +17,7 @@ class ProfileController {
 
     }
 
-    signin = (req, res) => {
+    signin(req, res) {
         User.findOne({
           username: req.body.username,
         })
@@ -40,12 +42,12 @@ class ProfileController {
             }
       
             const token = jwt.sign({ id: user.id },
-                                    config.secret,
-                                    {
-                                      algorithm: 'HS256',
-                                      allowInsecureKeySizes: true,
-                                      expiresIn: 86400, // 24 hours
-                                    });
+              config.secret,
+              {
+                algorithm: 'HS256',
+                allowInsecureKeySizes: true,
+                expiresIn: 86400, // 24 hours
+              });
       
             var authorities = [];
       

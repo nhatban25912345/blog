@@ -16,6 +16,7 @@ class LoginController {
         try {
             // check if the user exists
             const user = await User.findOne({ username: req.body.username });
+            console.log(user);
             if (user) {
               //check if password matches
               const result = req.body.password === user.password;

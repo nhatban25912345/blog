@@ -5,13 +5,15 @@ const userRouter = require("./users");
 const loginRouter = require("./login");
 const profileRouter = require("./profile");
 // const jwt  = require("../app/middleware/jwt");
+const middleware = require("../app/middleware")
+const verifyToken = middleware.authenticator.verifyToken;
 
 function route(app) {
-  app.use("/profile", profileRouter);
+  app.use("/profile", verifyToken, profileRouter);
   app.use("/login", loginRouter);
-  app.use("/courses", courseRouter);
+  app.use("/courses", verifyToken, courseRouter);
   app.use("/news", newsRouter);
-  app.use("/users", userRouter);
+  app.use("/users", verifyToken, userRouter);
   app.use("/", siteRouter);
 }
 
