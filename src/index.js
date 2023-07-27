@@ -2,13 +2,15 @@
 const express = require('express');
 const cors = require('cors');
 const bodyparser = require('body-parser');
+const dotenv = require('dotenv');
 // ----------------------------------------
+
+dotenv.config();
 
 const path = require('path');
 const morgan = require('morgan');
 const { create } = require('express-handlebars');
 const app = express();
-const port = 3000;
 
 
 // -----------------------
@@ -51,4 +53,4 @@ app.get('/profile', (req, res) => {
 });
 
 
-app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
+app.listen(process.env.PORT || 8000, () => console.log(`App listening at http://localhost:${process.env.PORT}`));
