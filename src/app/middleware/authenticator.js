@@ -4,9 +4,13 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+
 verifyToken = (req, res, next) => {
+  // test
+  const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMDdmMzBkMTllYTkyODhkZDViODY1.nsj-LQDVeQ4oRRZa7JyhRkeBuegcRtiRPd26y94fBOY";
+  
   // console.log(req);
-  let token = req.session.token;
+  // let token = req.session.token;
 
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
@@ -21,7 +25,6 @@ verifyToken = (req, res, next) => {
                 });
               }
               req.userId = decoded.id;
-              console.log(req);
               console.log(req.userId);
               next();
             });
