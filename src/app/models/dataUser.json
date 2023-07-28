@@ -1,0 +1,115 @@
+[{
+  "_id": {
+    "$oid": "64c32adb6cfb98769a78d36b"
+  },
+  "role": "admin",
+  "username": "hoangnhat",
+  "password": "metaway2023",
+  "avatar": "https://wallpapercrafter.com/th8001/597559-And-anime-archer-arrow-art-bow-Characters-digital.jpg",
+  "name": "Hoàng Nhật",
+  "sex": "Male",
+  "birthDay": "03/03/2001",
+  "email": "hoangnhat03032001@gmail.com",
+  "address": "Ninh Bình",
+  "hobby": [
+    "Nghe nhạc"
+  ],
+  "isActive": true,
+  "phoneNumber": "0964251336"
+},
+{
+  "_id": {
+    "$oid": "64c32b216cfb98769a78d36c"
+  },
+  "role": "manager",
+  "username": "sonnguyen",
+  "password": "metaway2023",
+  "avatar": "https://wallpapercrafter.com/th8001/597559-And-anime-archer-arrow-art-bow-Characters-digital.jpg",
+  "name": "Nguyễn Sơn",
+  "sex": "Male",
+  "birthDay": "1/1/2000",
+  "phoneNumber": "0964251336",
+  "email": "huynguyen@gmail.com",
+  "address": "Hải Dương",
+  "hobby": [
+    "Nghe nhạc"
+  ],
+  "isActive": true
+},
+{
+  "_id": {
+    "$oid": "64c32a866cfb98769a78d36a"
+  },
+  "role": "member",
+  "username": "huybui",
+  "password": "metaway2023",
+  "avatar": "https://wallpapercrafter.com/th8001/597559-And-anime-archer-arrow-art-bow-Characters-digital.jpg",
+  "name": "Bùi Văn Huy",
+  "sex": "Male",
+  "birthDay": "1/1/2001",
+  "phoneNumber": "0964251336",
+  "email": "huynguyen@gmail.com",
+  "address": "Hưng Yên",
+  "hobby": [
+    "Nghe nhạc"
+  ],
+  "isActive": true
+},
+{
+  "_id": {
+    "$oid": "64c32d066cfb98769a78d371"
+  },
+  "role": "member",
+  "username": "hoangnguyen",
+  "password": "metaway2023",
+  "avatar": "https://wallpapercrafter.com/th8001/597559-And-anime-archer-arrow-art-bow-Characters-digital.jpg",
+  "name": "Nguyễn Minh Hoàng",
+  "sex": "Male",
+  "birthDay": "1/1/2001",
+  "phoneNumber": "0964251336",
+  "email": "huynguyen@gmail.com",
+  "address": "Hà Nội",
+  "hobby": [
+    "Nghe nhạc"
+  ],
+  "isActive": true
+},
+{
+  "_id": {
+    "$oid": "64c32d0c6cfb98769a78d372"
+  },
+  "role": "member",
+  "username": "longnguyen",
+  "password": "metaway2023",
+  "avatar": "https://wallpapercrafter.com/th8001/597559-And-anime-archer-arrow-art-bow-Characters-digital.jpg",
+  "name": "Nguyễn Thanh Long",
+  "sex": "Male",
+  "birthDay": "1/1/2002",
+  "phoneNumber": "0389590910",
+  "email": "huynguyen@gmail.com",
+  "address": "Hà Nội",
+  "hobby": [
+    "Nghe nhạc",
+    "Đá bóng"
+  ],
+  "isActive": true
+},
+{
+  "_id": {
+    "$oid": "64c32d566cfb98769a78d373"
+  },
+  "role": "member",
+  "username": "tamanh",
+  "password": "metaway2023",
+  "avatar": "https://wallpapercrafter.com/th8001/597559-And-anime-archer-arrow-art-bow-Characters-digital.jpg",
+  "name": "Tạ Văn Mạnh",
+  "sex": "Male",
+  "birthDay": "1/1/2001",
+  "phoneNumber": "0964251336",
+  "email": "huynguyen@gmail.com",
+  "address": "Hà Nội",
+  "hobby": [
+    "Nghe nhạc"
+  ],
+  "isActive": true
+}]
