@@ -7,9 +7,9 @@ class ProfileController {
     async index(req, res, next) {
       await User.findOne({ _id: req.userId })
         .then((user) => {
-          console.log("");
-          console.log("---Take user at ProfileController--------------");
-          console.log(user);
+          // console.log("");
+          // console.log("---Take user at ProfileController--------------");
+          // console.log(user);
           return res.json(user)
         })
         .catch((error) => {

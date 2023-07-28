@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const User = new Schema ({
     role: {type: String, maxLength: 50, default: "member"},
-    username: {type: String, maxLength: 50},
-    password: {type: String, maxLength: 50},
+    username: {type: String, maxLength: 50, require: true},
+    password: {type: String, maxLength: 50, require: true},
     avatar: {type: String, maxLength: 256},
     name: {type: String, maxLength: 50},
     sex: {type: String, maxLength: 50, default: "Nam"},
@@ -14,7 +14,8 @@ const User = new Schema ({
     address: {type: String, maxLength: 500},
     hobby: {type: Array, maxLength: 255},
     isActive: {type: Boolean, default: "true"},
-    dateCreate: {type: Date, default: Date.now},
+}, {
+    timeStamps: true,
 })
 
 module.exports = mongoose.model("User", User);

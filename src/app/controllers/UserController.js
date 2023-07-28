@@ -1,37 +1,32 @@
 const User = require("../models/User");
-const db = require("../../config/db")
 
 const { multipleMongooseToObject } = require("../../util/mongoose");
 
 class UserController {
 
-    // [GET] /user
+    // [GET] /users
     show(req, res, next) {
         User.find({})
         .then(users => res.json(users))
         .catch(next);
     }
 
-    // post /user
+    // [GET] /users/create
     createUser(req, res, next) {
-        // User.insert(
-        //     {uid: 'uid'}, 
-        //     {vehicle_status : 'vehicleSatus' },
-        //     {multi:true}, 
-        //       function(err, numberAffected){  
-        //       });
-        // db.users.insertOne( {} )
-        try {
-            console.log("---------1----------");
-            console.log(db);
-            db.users.insertOne(
-                { "username": "shinha",
-                "password": "metaway2023", },
-                );
-                // retur
-            } catch (err) {
-            res.status(408).json({err: "Insert user fail!!!"})
-         }
+        res.render('users/create')
+    }
+
+    // [POST] /users/store
+    store(req, res, next) {
+        const user = new User(req.body);
+        user.save()
+        .then(() => {
+            console.log("Created user " + req.body.username);
+            res.redirect('/profile');
+        })
+        .catch((err) => {
+                    res.status(408).json({err: "Insert user Fail!!!"})
+                })
     }
 
 }   
