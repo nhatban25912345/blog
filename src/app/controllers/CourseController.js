@@ -1,5 +1,5 @@
 const Course = require("../models/Course");
-const { multipleMongooseToObject } = require("../../util/mongoose");
+const { mongooseToObject } = require("../../util/mongoose");
 
 class SiteController {
 
@@ -7,11 +7,26 @@ class SiteController {
     show(req, res, next) {
         Course.findOne({slug: req.params.slug})
             .then((course) => {
-                res.json(course);
+                res.render("courses/show", {course: mongooseToObject(course), } )
             })
             .catch(next);
+    };
 
-        res.render
+    // [GET] /courses/create
+    create(req, res, next) {
+        res.render("courses/create");
+    };
+
+    // [POST] /courses/store
+    async store(req, res, next) {
+        const formData = req.body;
+        req.body.image = `https://i.ytimg.com/vi/${req.body.videoId}/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDAp2L9EMhvMStemUEdRYEvs8VYeA`;
+        const course = new Course(formData);
+        course.save()
+                .then(() => res.redirect('/'))
+                .catch((error) => {
+                    
+                })
     };
 
 }   
