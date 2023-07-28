@@ -9,11 +9,12 @@ const User = new Schema ({
     name: {type: String, maxLength: 50},
     sex: {type: String, maxLength: 50, default: "Nam"},
     birthDay: {type: Date},
-    numberPhone: {type: Number, maxLength: 10},
+    phoneNumber: {type: Number, maxLength: 10},
     email: {type: String, maxLength: 255},
     address: {type: String, maxLength: 500},
-    hobby: {type: String, maxLength: 500},
-    isActivve: {type: Boolean, default: "true"},
+    hobby: {type: Array, maxLength: 255},
+    isActive: {type: Boolean, default: "true"},
+    dateCreate: {type: Date, default: Date.now},
 })
 
 module.exports = mongoose.model("User", User);

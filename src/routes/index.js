@@ -4,7 +4,7 @@ const courseRouter = require("./courses");
 const userRouter = require("./users");
 const loginRouter = require("./login");
 const profileRouter = require("./profile");
-// const jwt  = require("../app/middleware/jwt");
+
 const middleware = require("../app/middleware")
 const verifyToken = middleware.authenticator.verifyToken;
 

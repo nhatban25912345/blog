@@ -21,6 +21,7 @@ app.use(bodyparser.json());
 
 const route = require("./routes");
 const db = require("./config/db")
+// console.log(db);
 
 // connect to db
 db.connect();

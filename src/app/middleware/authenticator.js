@@ -7,20 +7,22 @@ dotenv.config();
 
 verifyToken = (req, res, next) => {
   // test
-  const token = { token:"eyJhbGciOiJIUzI1NiJ9.NjRjMmQ0MDk0YjBmNTdjZGNmNTI5N2Vj.PpbwcOPt03UejJ2rKe6AVr4uhUKnCsO04LZx8_PHFbw",};
+  const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMzJhZGI2Y2ZiOTg3NjlhNzhkMzZi.fwUMCLIiueRJppbmcGdXUKjXpNh5xrLAgP5eyju7J5Q";
   // const token = { token:"" };
 
   // console.log(req);
   // let token = req.headers.token;
+  // console.log("eyJhbGciOiJIUzI1NiJ9.NjRjMDdmMzBkMTllYTkyODhkZDViODY1.nsj-LQDVeQ4oRRZa7JyhRkeBuegcRtiRPd26y94fBOY");
 
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
   }
 
-  jwt.verify(token.token,
+  jwt.verify(token,
             process.env.JWT_SECRET_KEY,
             (err, decoded) => {
               if (err) {
+                console.log(decoded);
                 return res.status(401).send({
                   message: "Unauthorized!",
                 });
