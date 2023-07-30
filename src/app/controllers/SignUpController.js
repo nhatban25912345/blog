@@ -13,6 +13,7 @@ class SignUpController {
         // res.json("Sign up user complete");
         const formData = req.body;
         const newUser = new User(formData);
+        console.log("New User: ", newUser);
         newUser.save()
                 .then(() => res.redirect("/"))
                 .catch((error) => {

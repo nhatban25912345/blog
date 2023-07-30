@@ -7,12 +7,11 @@ dotenv.config();
 
 verifyToken = (req, res, next) => {
   // test
-  const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMmQ0MDk0YjBmNTdjZGNmNTI5N2Vj.PpbwcOPt03UejJ2rKe6AVr4uhUKnCsO04LZx8_PHFbw";
+  // const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMmQ0MDk0YjBmNTdjZGNmNTI5N2Vj.PpbwcOPt03UejJ2rKe6AVr4uhUKnCsO04LZx8_PHFbw";
   // const token = { token:"" };
 
   // console.log(req);
-  // let token = req.headers.token;
-  // console.log("eyJhbGciOiJIUzI1NiJ9.NjRjMDdmMzBkMTllYTkyODhkZDViODY1.nsj-LQDVeQ4oRRZa7JyhRkeBuegcRtiRPd26y94fBOY");
+  let token = req.headers.token;
   
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
