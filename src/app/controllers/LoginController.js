@@ -21,13 +21,15 @@ class LoginController {
             //check if password matches
             const result = req.body.password === user.password;
             if (result) {
-              const token = jwt.sign(user.id, process.env.JWT_SECRET_KEY, {
-                algorithm: 'HS256',
-                allowInsecureKeySizes: true,
-                expiresIn: 86400, // 24 hours
-              });
+              const token = jwt.sign(user.id, process.env.JWT_SECRET_KEY, 
+                {
+                // algorithm: 'HS256',
+                // allowInsecureKeySizes: true,
+                // expiresIn: 86400, // 24 hours
+                }
+              );
               console.log(`---Login return token: ${token}`);
-              req.session.token = token;
+              // req.session.token = token;
               res.json({token})
             } else {
               res.status(404).json({ error: "password doesn't match" });

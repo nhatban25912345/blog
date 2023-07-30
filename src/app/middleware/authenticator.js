@@ -7,7 +7,7 @@ dotenv.config();
 
 verifyToken = (req, res, next) => {
   // test
-  const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMzJhZGI2Y2ZiOTg3NjlhNzhkMzZi.fwUMCLIiueRJppbmcGdXUKjXpNh5xrLAgP5eyju7J5Q";
+  const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMmQ0MDk0YjBmNTdjZGNmNTI5N2Vj.PpbwcOPt03UejJ2rKe6AVr4uhUKnCsO04LZx8_PHFbw";
   // const token = { token:"" };
 
   // console.log(req);

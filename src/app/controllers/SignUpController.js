@@ -3,14 +3,20 @@ const dotenv = require('dotenv');
 
 class SignUpController {
 
-    // [GET] /login
+    // [GET] /s
     index(req, res, next) {
-        res.render("signup");
+        res.render("signUp");
     }
 
     // [POST] /login
     signUp(req, res, next) {
-        res.json("Sign up user complete");
+        // res.json("Sign up user complete");
+        const formData = req.body;
+        const newUser = new User(formData);
+        newUser.save()
+                .then(() => res.redirect("/"))
+                .catch((error) => {
+                });
     }
       
 }   
