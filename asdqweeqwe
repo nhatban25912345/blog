@@ -1,0 +1,77 @@
+[33mcommit 6962fb058f9bee89a4d9de59a3af002f5bd31827[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Fri Jul 28 15:40:42 2023 +0700
+
+    [CRUD] Create Course
+
+[33mcommit 6e5298f4f009e8046cc13a5a2f83f99aeb36c534[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Thu Jul 27 09:07:32 2023 +0700
+
+    update
+
+[33mcommit 45087f2ccd941ffda6d0416e4638fa37f9a00304[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Tue Jul 25 18:02:26 2023 +0700
+
+    create schema Course, show all course and access to Course detail page
+
+[33mcommit 57551c2ad0468afb0953bab5d1f67e0eea35cea1[m
+Author: nhatban25912345 <hoangnhat529@gmail.com>
+Date:   Tue Jul 25 08:00:00 2023 +0700
+
+    connect to mongodb
+
+[33mcommit 9102ac5842bf2b2008f67d027f1e0700862f5825[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Sat Jul 22 18:34:48 2023 +0700
+
+    test prettier
+
+[33mcommit 9c87b64777d626fb941809e31f78256e4abe7edc[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Sat Jul 22 18:31:55 2023 +0700
+
+    Prettier, lint-staged, husky
+
+[33mcommit 17df7f1fb8e4854febfe8fd364197fb13db9a384[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Sat Jul 22 18:29:53 2023 +0700
+
+    Prettier, lint-staged, husky
+
+[33mcommit 54dfab02122821f4142334975815699be5991620[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Thu Jul 20 19:09:36 2023 +0700
+
+    refacter code: create routes, app/controller folders
+
+[33mcommit 3f1be56d08521804d1d621288d5297a303644486[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Thu Jun 22 18:02:39 2023 +0700
+
+    mvc 1
+
+[33mcommit b67fa862e84272f0c5ffc69c6d744f89a168ac0d[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Thu Jun 22 14:53:27 2023 +0700
+
+    POST and GET method
+
+[33mcommit 33a3ae4ec841d40137be667e8b2c5e2c0f6987c7[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Wed Jun 21 09:28:02 2023 +0700
+
+    scss - use boostrap
+
+[33mcommit e217892529378d3620080095f0ea718a4e89b1dc[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Thu Jun 15 16:30:13 2023 +0700
+
+    first commit
+
+[33mcommit 072a3e062e1ac0a603ec15f13adc4f9da8eef3f6[m
+Author: mnhthng2112 <dmnhthng@gmail.com>
+Date:   Thu Jun 15 15:49:48 2023 +0700
+
+    first commit - nodejs
