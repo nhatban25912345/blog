@@ -13,7 +13,7 @@ class ProfileController {
           return res.json(user)
         })
         .catch((error) => {
-          res.status(406).json({ error: "Can't find user" });
+          res.status(405).json({ error: "Can't find user" });
         })
 
     }

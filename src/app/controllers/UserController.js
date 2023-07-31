@@ -25,7 +25,7 @@ class UserController {
             res.redirect('/profile');
         })
         .catch((err) => {
-                    res.status(408).json({err: "Insert user Fail!!!"})
+                    res.status(406).json({err: "Insert user Fail!!!"})
                 })
     }
 

@@ -14,7 +14,7 @@ verifyToken = (req, res, next) => {
   let token = req.headers.token;
   
   if (!token) {
-    return res.status(403).send({ message: "No token provided!" });
+    return res.status(500).send({ message: "No token provided!" });
   }
 
   jwt.verify(token,
@@ -22,7 +22,7 @@ verifyToken = (req, res, next) => {
             (err, decoded) => {
               if (err) {
                 console.log(decoded);
-                return res.status(401).send({
+                return res.status(408).send({
                   message: "Unauthorized!",
                 });
               }
