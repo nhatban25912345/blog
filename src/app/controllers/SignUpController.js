@@ -15,8 +15,9 @@ class SignUpController {
         const newUser = new User(formData);
         console.log("New User: ", newUser);
         newUser.save()
-                .then(() => res.redirect("/"))
+                .then(() => res.status(200).json({message: "Sign up success!!!"}))
                 .catch((error) => {
+
                 });
     }
       
