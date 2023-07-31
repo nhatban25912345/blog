@@ -4,7 +4,7 @@ checkDuplicateUsernameOrEmail = async (req, res, next) => {
     console.log(req.body);
     await User.findOne({ username: req.body.username })
         .then((user) => {
-            if (user != null){
+            if (user != null ){
                 return res.status(409).json({ error: "Username was registed" });
             }
             // return console.log("next");

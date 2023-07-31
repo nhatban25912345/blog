@@ -1,5 +1,5 @@
 const loginRouter = require("./login");
-const signUpRouter = require("./signUp");
+const signUpRouter = require("./signup");
 const siteRouter = require("./site");
 const userRouter = require("./users");
 const profileRouter = require("./profile");
