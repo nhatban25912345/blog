@@ -1,16 +1,88 @@
 <form method="POST" action="">
   
   <div class="mb-3">
-    <h1>Sign up</h1>
+    <h1>Login</h1>
   </div>
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
-    <input name="username" type="text" class="form-control" value="hoangnhat" id="username" placeholder="username...">
+    <input name="username" type="text" class="form-control" value="thangmanh" id="username" placeholder="username...">
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
     <input name="password" type="text" class="form-control" value="metaway2023"  id="password" placeholder="password...">
   </div>
+  <div class="mb-3">
+    <label for="fullname" class="form-label">Fullname</label>
+    <input name="fullname" type="text" class="form-control" value="Mạnh Thắng" id="fullname" placeholder="fullname...">
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input name="email" type="email" class="form-control" value="thangmanh225@gmail.com" id="email" placeholder="email...">
+  </div>
+  <div class="mb-3">
+    <label for="birdthday" class="form-label">Birthday</label>
+    <input name="birdthday" type="date" class="form-control" value="02-02-2000" id="txtDate" placeholder="birdthday...">
+  </div>
+  <div class="mb-3">
+    <label for="phonenumber" class="form-label">Phone number</label>
+    <input name="phonenumber" type="text" class="form-control" value="0944483273" id="phonenumber" placeholder="phonenumber...">
+  </div>
+  <div class="mb-3">
+    <label for="address" class="form-label">Address</label>
+    <input name="address" type="text" class="form-control" value="Lô CX01, khu đô thị Văn Khê, phường La Khê, quận Hà Đông Hà Nội." id="address" placeholder="username...">
+  </div>
+  <select class="form-select mb-3" aria-label="Default select example">
+    <option selected>Open this select menu</option>
+    <option value="hobby1" selected>Nghe nhạc</option>
+    <option value="hobby2">Xem phim</option>
+    <option value="hobby3">Đá bóng</option>
+    <option value="hobby4">Hát</option>
+    <option value="hobby5">Đọc sách</option>
+  </select>
 
   <button type="submit" class="btn btn-primary">Sign up</button>
+
 </form>
+
+{{!-- <div class="input-group">
+  <input type="text" id="tagsInput" class="form-control" placeholder="Type and press Enter to add tags">
+</div> --}}
+
+{{!-- <script>
+  // Initialize an empty array to store the tags
+  let tags = [];
+
+  const tagsInput = document.getElementById('tagsInput');
+
+  // Event listener for the "keypress" event to capture Enter key press
+  tagsInput.addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+      const tag = tagsInput.value.trim();
+
+      // If the tag is not empty and it's not already in the tags array, add it
+      if (tag && !tags.includes(tag)) {
+        tags.push(tag);
+        updateTags();
+      }
+
+      // Clear the input field
+      tagsInput.value = '';
+    }
+  });
+
+  // Function to update the tags displayed
+  function updateTags() {
+    const tagsContainer = document.createElement('div');
+    tagsContainer.className = 'mt-2';
+
+    tags.forEach(tag => {
+      const tagElement = document.createElement('span');
+      tagElement.className = 'badge bg-primary me-1';
+      tagElement.textContent = tag;
+      tagsContainer.appendChild(tagElement);
+    });
+
+    const inputGroup = document.querySelector('.input-group');
+    inputGroup.appendChild(tagsContainer);
+  }
+</script> --}}

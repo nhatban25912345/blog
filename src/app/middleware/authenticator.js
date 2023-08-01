@@ -7,11 +7,11 @@ dotenv.config();
 
 verifyToken = (req, res, next) => {
   // test
-  // const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMmQ0MDk0YjBmNTdjZGNmNTI5N2Vj.PpbwcOPt03UejJ2rKe6AVr4uhUKnCsO04LZx8_PHFbw";
+  const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMzJhZGI2Y2ZiOTg3NjlhNzhkMzZi.fwUMCLIiueRJppbmcGdXUKjXpNh5xrLAgP5eyju7J5Q";
   // const token = { token:"" };
 
   // console.log(req);
-  let token = req.headers.token;
+  // const token = req.headers.token;
   
   if (!token) {
     return res.status(500).send({ message: "No token provided!" });
@@ -33,18 +33,27 @@ verifyToken = (req, res, next) => {
             });
 };
 
-// isModerator = (req, res, next) => {
-//   User.findById(req.userId).exec((err, user) => {
-//     if (err) {
-//       res.status(500).send({ message: err });
-//       return;
-//     };
-//     next();
-//   });
-// };
+isModerator = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.userId).exec()
+    console.log("user: ", user);
+    if (user!= undefined && user != null) {
+      console.log(1111);
+      next();
+      return;
+    }
+    console.log("User undefinded");
+    return res.status(500).json({ message: "Unkown user" });
+  } 
+  catch {
+    return res.status(500).send({ error: "Server error" });
+  }
+  
+
+};  
 
 const authenticator = {
   verifyToken,
-  // isModerator,
+  isModerator,
 };
 module.exports = authenticator;

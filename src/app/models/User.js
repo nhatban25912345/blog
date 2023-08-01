@@ -9,7 +9,7 @@ const User = new Schema ({
     name: {type: String, maxLength: 50},
     sex: {type: String, maxLength: 50, default: "Nam"},
     birthDay: {type: Date},
-    phoneNumber: {type: Number, maxLength: 10},
+    phoneNumber: {type: String, maxLength: 10},
     email: {type: String, maxLength: 255},
     address: {type: String, maxLength: 500},
     hobby: {type: Array, maxLength: 255},

@@ -5,17 +5,19 @@ class ProfileController {
 
     // [GET] /user
     async index(req, res, next) {
-      await User.findOne({ _id: req.userId })
-        .then((user) => {
-          // console.log("");
-          // console.log("---Take user at ProfileController--------------");
-          // console.log(user);
-          return res.json(user)
-        })
-        .catch((error) => {
-          res.status(405).json({ error: "Can't find user" });
-        })
-
+      try {
+        const user = await User.findOne({ _id: req.userId }).exec();
+        if (!user) {
+          return res.status(404).json({ error: "User not found" });
+        }
+        return res.json(user);
+      }
+      catch(error) {
+        // console.log("Error:", error);
+        console.log("Lỗi ở đây");
+        res.status(500).json({ message: "Internal server error" });
+        return 
+      }
     }
     
 }   
