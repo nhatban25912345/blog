@@ -15,12 +15,12 @@ class SignUpController {
         const newUser = new User(formData);
         console.log("New User: ", newUser);
         newUser.save()
-                .then(() => res.status(200).json({message: "Sign up success!!!"}))
+                .then(() => res.status(200).json({code: 10, message: "Sign up success!!!"}))
                 .catch((error) => {
                     res.status(500).json({ message: "Server error" });
                 });
     }
-      
+    
 }   
 
 module.exports = new SignUpController;

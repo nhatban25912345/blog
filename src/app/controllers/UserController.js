@@ -47,13 +47,19 @@ class UserController {
     // [POST] /users/update
     update(req, res, next) {
         const id = req.params.id;
+
+        // validate data 
+        if ( req.params.role == "" || req.params.username == "" || req.params.password == "" || req.params.name == "" || req.params.sex == "" || req.params.phoneNumber == "" || req.params.email == "" || req.params.hobby === [] ) {
+            return res.status(400).json({code: 11, message: "Update user Fail, some data is empty!!!" })
+        }
+
         const formDataUpdate = req.body;
         console.log("id: ", id);
         User.updateOne({ _id: id}, formDataUpdate)
             .then(() => {
                 res.status(200).json({message: "Update user successfully!!!"})
             })
-            .catch(next)
+            .catch(() => res.status(404).json({code: 8, message: "Update user Fail, user not found!!!" }))
     }
 
     // [POST] /users/store
@@ -65,7 +71,7 @@ class UserController {
             .then(() => {
                 res.status(200).json({message: "Delete user successfully!!!"})
             })
-            .catch(() => res.status(404).json({code: 8, message: "user not found" }))
+            .catch(() => res.status(404).json({code: 9, message: "user not found" }))
     }
 
     // [POST] /
