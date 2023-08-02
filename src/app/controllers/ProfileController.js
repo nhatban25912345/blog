@@ -8,14 +8,12 @@ class ProfileController {
       try {
         const user = await User.findOne({ _id: req.userId }).exec();
         if (!user) {
-          return res.status(404).json({ error: "User not found" });
+          return res.status(400).json({ error: "User not found" });
         }
         return res.json(user);
       }
       catch(error) {
-        // console.log("Error:", error);
-        console.log("Lỗi ở đây");
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Server error" });
         return 
       }
     }

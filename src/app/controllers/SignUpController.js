@@ -17,7 +17,7 @@ class SignUpController {
         newUser.save()
                 .then(() => res.status(200).json({message: "Sign up success!!!"}))
                 .catch((error) => {
-
+                    res.status(500).json({ message: "Server error" });
                 });
     }
       

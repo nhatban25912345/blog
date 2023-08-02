@@ -68,6 +68,23 @@ class UserController {
             .catch(next)
     }
 
+    // [POST] /
+    async search(req, res, next) {
+        try {
+            const data = await User.find(
+                {
+                    "$or": [
+                        {name: {$regex:req.params.key}},
+                        {username: {$regex:req.params.key}},
+                    ] 
+                }
+            );
+            res.status(200).json(data);
+        }
+        catch{
+            res.status(500).json({ message: "Server error" });
+        }
+    }
 }   
 
 module.exports = new UserController;

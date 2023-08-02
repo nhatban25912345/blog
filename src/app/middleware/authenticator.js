@@ -7,11 +7,11 @@ dotenv.config();
 
 verifyToken = (req, res, next) => {
   // test
-  // const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMzJhZGI2Y2ZiOTg3NjlhNzhkMzZi.fwUMCLIiueRJppbmcGdXUKjXpNh5xrLAgP5eyju7J5Q";
+  const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMzJhZGI2Y2ZiOTg3NjlhNzhkMzZi.fwUMCLIiueRJppbmcGdXUKjXpNh5xrLAgP5eyju7J5Q";
   // const token = { token:"" };
 
   // console.log(req);
-  const token = req.headers.token;
+  // const token = req.headers.token;
   
   if (!token) {
     return res.status(500).send({ message: "No token provided!" });
@@ -43,13 +43,11 @@ isModerator = async (req, res, next) => {
       return;
     }
     console.log("User undefinded");
-    return res.status(500).json({ message: "Unkown user" });
+    return res.status(500).json({ message: "Unknown user" });
   } 
   catch {
     return res.status(500).send({ error: "Server error" });
   }
-  
-
 };  
 
 const authenticator = {
