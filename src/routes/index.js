@@ -9,11 +9,11 @@ const verifyToken = middleware.authenticator.verifyToken;
 const isModerator = middleware.authenticator.isModerator;
 
 function route(app) {
-  app.use("/",verifyToken, siteRouter);
   app.use("/login", loginRouter);
   app.use("/sign-up", signUpRouter);
   app.use("/profile", verifyToken, isModerator, profileRouter);
   app.use("/users", verifyToken, userRouter);
+  app.use("/",verifyToken , siteRouter);
 }
 
 module.exports = route;
