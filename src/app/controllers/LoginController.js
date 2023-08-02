@@ -32,11 +32,11 @@ class LoginController {
               // req.session.token = token;
               res.json({token})
             } else {
-              res.status(400).json({ error: "password doesn't match" });
+              res.status(404).json({ code: 5, error: "password doesn't match" });
             }
           } else {
             console.log(req.body);
-            res.status(400).json({ error: "User doesn't exist" });
+            res.status(404).json({ code: 6, error: "User doesn't exist" });
           }
         } catch (error) {
           res.status(500).json({ error: "Server error" });
