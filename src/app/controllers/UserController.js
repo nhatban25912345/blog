@@ -65,7 +65,7 @@ class UserController {
             .then(() => {
                 res.status(200).json({message: "Delete user successfully!!!"})
             })
-            .catch(next)
+            .catch(() => res.status(404).json({code: 8, message: "user not found" }))
     }
 
     // [POST] /
