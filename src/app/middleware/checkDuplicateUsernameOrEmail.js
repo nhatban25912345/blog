@@ -5,19 +5,19 @@ checkDuplicateUsernameOrEmail = async (req, res, next) => {
       // Kiểm tra tên người dùng trùng lặp
       const existingUsername = await User.findOne({ username: req.body.username }).exec();
       if (existingUsername) {
-        return res.status(409).json({ error: "Failed! Username was registered" });
+        return res.status(404).json({ code: 3, error: "Failed! Username was registered" });
       }
   
       // Kiểm tra email trùng lặp
       const existingEmail = await User.findOne({ email: req.body.email }).exec();
       if (existingEmail) {
-        return res.status(409).json({ error: "Failed! Email was registered!" });
+        return res.status(404).json({ code: 4, error: "Failed! Email was registered!" });
       }
 
       // Kiểm tra sđt trùng lặp
       const existingPhoneNumber = await User.findOne({ phonenumber: req.body.phonenumber }).exec();
       if (existingPhoneNumber) {
-        return res.status(409).json({ error: "Failed! Phonenumber was registered!" });
+        return res.status(404).json({ code: 5, error: "Failed! Phonenumber was registered!" });
       }
 
       // Nếu cả tên người dùng email và số điện thoại đều là duy nhất, tiếp tục middleware tiếp theo

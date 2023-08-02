@@ -22,7 +22,8 @@ verifyToken = (req, res, next) => {
             (err, decoded) => {
               if (err) {
                 console.log(decoded);
-                return res.status(408).send({
+                return res.status(401).send({
+                  code: 1,
                   message: "Unauthorized!",
                 });
               }
@@ -43,7 +44,10 @@ isModerator = async (req, res, next) => {
       return;
     }
     console.log("User undefinded");
-    return res.status(500).json({ message: "Unknown user" });
+    return res.status(404).json({ 
+      code: 2,
+      message: "Unknown user"
+    });
   } 
   catch {
     return res.status(500).send({ error: "Server error" });
