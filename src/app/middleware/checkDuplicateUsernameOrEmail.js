@@ -14,10 +14,12 @@ checkDuplicateUsernameOrEmail = async (req, res, next) => {
         return res.status(404).json({ code: 4, error: "Failed! Email was registered!" });
       }
 
-      // // Kiểm tra sđt trùng lặp
-      // const existingPhoneNumber = await User.findOne({ phonenumber: req.body.phonenumber }).exec();
+      // Kiểm tra sđt trùng lặp
+      // const existingPhoneNumber = await User.findOne({ phoneNumber: req.body.phoneNumber }).exec();
+      // console.log("existingPhoneNumber: ", existingPhoneNumber);
+      // console.log("phoneNumber: ", req.body );
       // if (existingPhoneNumber) {
-      //   return res.status(404).json({ code: 5, error: "Failed! Phonenumber was registered!" });
+      //   return res.status(404).json({ code: 5, error: "Failed! phoneNumber was registered!" });
       // }
 
       // Nếu cả tên người dùng email và số điện thoại đều là duy nhất, tiếp tục middleware tiếp theo

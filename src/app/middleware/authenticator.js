@@ -14,7 +14,6 @@ verifyToken = (req, res, next) => {
   const token = req.headers.token;
   
   if (!token) {
-    console.log("text");
     return res.status(500).send({ message: "No token provided!" });
   }
 
