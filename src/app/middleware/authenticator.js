@@ -14,6 +14,7 @@ verifyToken = (req, res, next) => {
   const token = req.headers.token;
   
   if (!token) {
+    console.log("text");
     return res.status(500).send({ message: "No token provided!" });
   }
 
@@ -50,6 +51,7 @@ isModerator = async (req, res, next) => {
     });
   } 
   catch {
+    console.log("here");
     return res.status(500).send({ error: "Server error" });
   }
 };  
