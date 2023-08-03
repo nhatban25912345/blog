@@ -1,0 +1,39 @@
+[{
+  "_id": {
+    "$oid": "64b7ae969a2e8b093bc73219"
+  },
+  "name": "NodeJS & ExpressJS",
+  "description": "Đây là khóa học Node với Express Framework được chia sẻ miễn phí tại Youtube. Mình rất mong muốn được chia sẻ những kiến thức đã tích lũy được trong quá trình làm việc thực tế tới các bạn. Hi vọng các bạn sẽ có thêm đam mê cho việc học lập trình.",
+  "image": "https://files.fullstack.edu.vn/f8-prod/courses/6.png",
+  "slug": "nodejs-expressjs"
+},
+{
+  "_id": {
+    "$oid": "64bfa51b566c3dca24e68ea0"
+  },
+  "name": "NodeJS & ExpressJS",
+  "description": "HTML và CSS có mối tương quan mật thiết. HTML là nền tảng của site và CSS giúp định hình phong cách (tất cả những gì tạo nên giao diện website). Hai yếu tố này hoàn toàn không thể tách rời.",
+  "image": "https://files.fullstack.edu.vn/f8-prod/courses/2.png",
+  "slug": "html-css"
+},
+{
+  "_id": {
+    "$oid": "64bfa51e566c3dca24e68ea1"
+  },
+  "name": "NodeJS & ExpressJS",
+  "description": "JavaScript, theo phiên bản hiện hành, là một ngôn ngữ lập trình thông dịch được phát triển từ các ý niệm nguyên mẫu. Ngôn ngữ này được dùng rộng rãi cho các trang web cũng như phía máy chủ.",
+  "image": "https://files.fullstack.edu.vn/f8-prod/courses/1.png",
+  "slug": "javascript"
+},
+{
+  "_id": {
+    "$oid": "64c37c0314955a099672d542"
+  },
+  "name": "Học lập trình jasvascript (nâng cao)",
+  "description": "Lập trình Javascript từ cơ bản đến nâng cao được xây dựng hướng đến cho các bạn mới bắt đầu nói riêng và ngôn ngữ lập trình nói chung nhằm giúp mọi người ...",
+  "image": "https://i.ytimg.com/vi/MGhw6XliFgo/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDAp2L9EMhvMStemUEdRYEvs8VYeA",
+  "videoId": "MGhw6XliFgo",
+  "level": "Intern",
+  "slug": "hoc-lap-trinh-jasvascript-nang-cao",
+  "__v": 0
+}]
