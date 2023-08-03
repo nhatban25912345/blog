@@ -5,10 +5,43 @@ const { multipleMongooseToObject } = require("../../util/mongoose");
 class UserController {
 
     // [GET] /users
-    show(req, res, next) {
-        User.find({})
-        .then(users => res.json(users))
-        .catch(next);
+    async show(req, res, next) {
+        try {
+            console.log(req.query); 
+            
+            // Show all user 
+            console.log("req.params.key: ", req.query.key);
+            if (req.query.key === "" || req.params.query === "" || req.query.key === undefined || req.query.gender === undefined) {
+                console.log("Show all");
+                User.find({})
+                .then(users => res.json(users))
+                .catch((next)=>console.log("asdsad"));
+                return;
+            }
+            
+            // search user
+            console.log("Searching...");
+            const data = await User.find(
+                {
+                    $text: {
+                        $search : req.query.key
+                    },
+                    "$and": [
+                        {name: {$regex:req.query.key}},
+                        {sex: {$regex:req.query.gender}},
+                    ]
+                }
+            ).sort({"name":-1});
+            if (data.length === 0) {
+                return res.status(200).json({ code: 12,  message: "Data is empty!!!"});
+            } 
+
+            return res.status(200).json(data);
+        }
+        catch(err) {
+            console.log(err);
+            res.status(500).json({ message: "Server error", error: err });
+        }
     }
 
     // [GET] /users/formCreate
@@ -67,29 +100,18 @@ class UserController {
         console.log(req.params);
         const id = req.params.id;
         console.log("id: ", id);
-        User.deleteOne({ _id: id})
-            .then(() => {
-                res.status(200).json({message: "Delete user successfully!!!"})
-            })
-            .catch(() => res.status(404).json({code: 9, message: "user not found" }))
+        // User.deleteOne({ _id: id})
+        //     .then(() => {
+        //         res.status(200).json({message: "Delete user successfully!!!"})
+        //     })
+        //     .catch(() => res.status(404).json({code: 9, message: "user not found" }))
+        res.status(200).json({message: "Delete user successfully!!!"});
+        return;
     }
 
-    // [POST] /
+    // [GET] /
     async search(req, res, next) {
-        try {
-            const data = await User.find(
-                {
-                    "$or": [
-                        {name: {$regex:req.params.key}},
-                        {username: {$regex:req.params.key}},
-                    ] 
-                }
-            );
-            res.status(200).json(data);
-        }
-        catch{
-            res.status(500).json({ message: "Server error" });
-        }
+        
     }
 }   
 

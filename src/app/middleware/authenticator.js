@@ -6,9 +6,9 @@ dotenv.config();
 
 
 verifyToken = (req, res, next) => {
-  // const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMzJhZGI2Y2ZiOTg3NjlhNzhkMzZi.fwUMCLIiueRJppbmcGdXUKjXpNh5xrLAgP5eyju7J5Q";
+  const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMzJhZGI2Y2ZiOTg3NjlhNzhkMzZi.fwUMCLIiueRJppbmcGdXUKjXpNh5xrLAgP5eyju7J5Q";
 
-  const token = req.headers.token;
+  // const token = req.headers.token;
   
   if (!token) {
     return res.status(401).send({ message: "No token provided!" });
@@ -36,7 +36,6 @@ isModerator = async (req, res, next) => {
     const user = await User.findById(req.userId).exec()
     console.log("user: ", user);
     if (user!= undefined && user != null) {
-      console.log(1111);
       next();
       return;
     }
