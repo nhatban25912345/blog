@@ -46,7 +46,6 @@ isModerator = async (req, res, next) => {
     });
   } 
   catch {
-    console.log("here");
     return res.status(500).send({ error: "Server error" });
   }
 };  
