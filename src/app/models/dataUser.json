@@ -112,4 +112,45 @@
     "Nghe nhạc"
   ],
   "isActive": true
+},
+{
+  "_id": {
+    "$oid": "64c38bd930e7c41c7f02e379"
+  },
+  "role": "member",
+  "username": "shinha",
+  "password": "metaway2023",
+  "sex": "Nam",
+  "hobby": [],
+  "isActive": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cb287c7e3fdbeec35fb47d"
+  },
+  "role": "member",
+  "username": "hoangnhat27",
+  "name": "Ngô Sĩ Liên",
+  "sex": "Nam",
+  "email": "hoangnhat@gmail.com7",
+  "hobby": [],
+  "isActive": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64cb70cc95f80f950ef87918"
+  },
+  "role": "member",
+  "username": "mainamhai",
+  "name": "Mai Nam Hải",
+  "sex": "Nam",
+  "email": "mainamhai@gmail.com",
+  "hobby": [
+    "123ââ"
+  ],
+  "isActive": true,
+  "__v": 0,
+  "password": "metaway2023"
 }]
