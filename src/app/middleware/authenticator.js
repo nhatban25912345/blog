@@ -6,9 +6,9 @@ dotenv.config();
 
 
 verifyToken = (req, res, next) => {
-  // const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMzJhZGI2Y2ZiOTg3NjlhNzhkMzZi.fwUMCLIiueRJppbmcGdXUKjXpNh5xrLAgP5eyju7J5Q";
+  const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMzJhZGI2Y2ZiOTg3NjlhNzhkMzZi.fwUMCLIiueRJppbmcGdXUKjXpNh5xrLAgP5eyju7J5Q";
 
-  const token = req.headers.token;
+  // const token = req.headers.token;
   
   if (!token) {
     return res.status(401).send({ message: "No token provided!" });

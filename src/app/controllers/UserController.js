@@ -8,35 +8,65 @@ class UserController {
     async show(req, res, next) {
         try {
             console.log(req.query); 
-            
-            // Show all user 
-            console.log("req.params.key: ", req.query.key);
-            if (req.query.key === "" || req.params.query === "" || req.query.key === undefined || req.query.gender === undefined) {
-                console.log("Show all");
-                User.find({})
-                .then(users => res.json(users))
-                .catch((next)=>console.log("asdsad"));
-                return;
+            const key = req.query?.key?.trim();
+            const gender = req.query?.gender?.trim();
+
+            const verifyEmplyData = (data) => {
+                if (data.length === 0) {
+                    return res.status(200).json({ code: 13,  message: "Data is empty!!!"})
+                }
             }
             
-            // search user
-            console.log("Searching...");
-            const data = await User.find(
-                {
-                    $text: {
-                        $search : req.query.key
-                    },
-                    "$and": [
-                        {name: {$regex:req.query.key}},
-                        {sex: {$regex:req.query.gender}},
-                    ]
-                }
-            ).sort({"name":-1});
-            if (data.length === 0) {
-                return res.status(200).json({ code: 12,  message: "Data is empty!!!"});
+            // Search user with key
+            if ( gender != "" && gender != undefined & key != "" && key != undefined) {
+                console.log("Search with Key and Gender");
+                const data = await User.find(
+                    {
+                        sex: {$regex:gender}
+                    }
+                ).sort({"sex":-1});
+                verifyEmplyData(data);
+                return res.status(200).json({code: 12, data: data, type: "Search with Key and Gender"});
             } 
 
-            return res.status(200).json(data);
+            // Search user with key
+            else if ( key != "" && key != undefined) {
+                console.log("Search with key");
+                const data = await User.find(
+                    {
+                        $text: {
+                            $search : req.query.key
+                        },
+                        name: {$regex:req.query.key},
+                    }
+                ).sort({"sex":-1});
+                verifyEmplyData(data);
+                return res.status(200).json({code: 12, data: data, type: "Search with Key"});
+            } 
+
+            // Search user with Gender
+            else if ( gender != "" && gender != undefined) {
+                console.log("Search with Gender");
+                const data = await User.find(
+                    {
+                        sex: {$regex:gender}
+                    }
+                ).sort({"sex":-1});
+                verifyEmplyData(data);
+                return res.status(200).json({code: 12, data: data, type: "Search with Gender"});
+            } 
+
+            // Show all user
+            else {
+                console.log("Show all");
+                User.find({})
+                .then(users => {
+                    verifyEmplyData(users);
+                    return res.json(users)
+                })
+                .catch(next);
+            }
+
         }
         catch(err) {
             console.log(err);
