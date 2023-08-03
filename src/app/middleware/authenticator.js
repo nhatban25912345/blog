@@ -6,16 +6,12 @@ dotenv.config();
 
 
 verifyToken = (req, res, next) => {
-  // test
   // const token = "eyJhbGciOiJIUzI1NiJ9.NjRjMzJhZGI2Y2ZiOTg3NjlhNzhkMzZi.fwUMCLIiueRJppbmcGdXUKjXpNh5xrLAgP5eyju7J5Q";
-  // const token = { token:"" };
 
-  // console.log(req);
   const token = req.headers.token;
   
   if (!token) {
-    console.log("text");
-    return res.status(500).send({ message: "No token provided!" });
+    return res.status(401).send({ message: "No token provided!" });
   }
 
   jwt.verify(token,
