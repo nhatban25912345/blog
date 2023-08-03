@@ -12,21 +12,31 @@ class UserController {
             const gender = req.query?.gender?.trim();
 
             const verifyEmplyData = (data) => {
+                console.log("data.length = ",data.length);
                 if (data.length === 0) {
-                    return res.status(200).json({ code: 13,  message: "Data is empty!!!"})
+                    return res.status(200).send({ code: 13,  message: "Data is empty!!!"})
                 }
+                console.log("ok");
             }
             
-            // Search user with key
-            if ( gender != "" && gender != undefined & key != "" && key != undefined) {
+            // Search user with Key and Gender
+            if ( gender !== "" && gender !== undefined && key !== "" && key !== undefined) {
                 console.log("Search with Key and Gender");
                 const data = await User.find(
                     {
-                        sex: {$regex:gender}
+                        $text: {
+                            $search : key,
+                        },
+
+                        name: {$regex:key},
+                        $or : [
+                            {name: {$regex:key}},
+                            {sex: {$regex:gender}}
+                        ]
                     }
-                ).sort({"sex":-1});
+                );
                 verifyEmplyData(data);
-                return res.status(200).json({code: 12, data: data, type: "Search with Key and Gender"});
+                return res.status(200).send({code: 12, data: data, type: "Search with Key and Gender"});
             } 
 
             // Search user with key
@@ -35,13 +45,13 @@ class UserController {
                 const data = await User.find(
                     {
                         $text: {
-                            $search : req.query.key
+                            $search : key
                         },
-                        name: {$regex:req.query.key},
+                        name: {$regex: key},
                     }
                 ).sort({"sex":-1});
                 verifyEmplyData(data);
-                return res.status(200).json({code: 12, data: data, type: "Search with Key"});
+                return res.status(200).send({code: 12, data: data, type: "Search with Key"});
             } 
 
             // Search user with Gender
@@ -53,7 +63,7 @@ class UserController {
                     }
                 ).sort({"sex":-1});
                 verifyEmplyData(data);
-                return res.status(200).json({code: 12, data: data, type: "Search with Gender"});
+                return res.status(200).send({code: 12, data: data, type: "Search with Gender"});
             } 
 
             // Show all user
@@ -62,15 +72,13 @@ class UserController {
                 User.find({})
                 .then(users => {
                     verifyEmplyData(users);
-                    return res.json(users)
+                    return res.send(users)
                 })
                 .catch(next);
             }
-
         }
         catch(err) {
-            console.log(err);
-            res.status(500).json({ message: "Server error", error: err });
+            return res.status(500).send({ message: "Server error", error: err });
         }
     }
 
@@ -86,10 +94,10 @@ class UserController {
         newUser.save()
         .then(() => {
             console.log("Created user " + req.body.username + " successfully!!!");
-            res.status(200).json({message: "Created user successfully!!!"});
+            res.status(200).send({message: "Created user successfully!!!"});
         })
         .catch((err) => {
-            res.status(408).json({err: "Insert user Fail!!!"})
+            res.status(408).send({err: "Insert user Fail!!!"})
         })
     }
 
@@ -100,10 +108,10 @@ class UserController {
         newUser.save()
         .then(() => {
             console.log("Created user " + req.body.username + " successfully!!!");
-            res.status(200).json({message: "Created user successfully!!!"});
+            res.status(200).send({message: "Created user successfully!!!"});
         })
         .catch((err) => {
-            res.status(403).json({err: "Insert user Fail!!!"})
+            res.status(403).send({err: "Insert user Fail!!!"})
         })
     }
 
@@ -113,16 +121,16 @@ class UserController {
 
         // validate data 
         if ( req.params.role == "" || req.params.username == "" || req.params.password == "" || req.params.name == "" || req.params.sex == "" || req.params.phoneNumber == "" || req.params.email == "" || req.params.hobby === [] ) {
-            return res.status(400).json({code: 11, message: "Update user Fail, some data is empty!!!" })
+            return res.status(400).send({code: 11, message: "Update user Fail, some data is empty!!!" })
         }
 
         const formDataUpdate = req.body;
         console.log("id: ", id);
         User.updateOne({ _id: id}, formDataUpdate)
             .then(() => {
-                res.status(200).json({message: "Update user successfully!!!"})
+                res.status(200).send({message: "Update user successfully!!!"})
             })
-            .catch(() => res.status(404).json({code: 8, message: "Update user Fail, user not found!!!" }))
+            .catch(() => res.status(404).send({code: 8, message: "Update user Fail, user not found!!!" }))
     }
 
     // [POST] /users/store
@@ -132,10 +140,10 @@ class UserController {
         console.log("id: ", id);
         // User.deleteOne({ _id: id})
         //     .then(() => {
-        //         res.status(200).json({message: "Delete user successfully!!!"})
+        //         res.status(200).send({message: "Delete user successfully!!!"})
         //     })
-        //     .catch(() => res.status(404).json({code: 9, message: "user not found" }))
-        res.status(200).json({message: "Delete user successfully!!!"});
+        //     .catch(() => res.status(404).send({code: 9, message: "user not found" }))
+        res.status(200).send({message: "Delete user successfully!!!"});
         return;
     }
 
