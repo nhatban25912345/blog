@@ -7,75 +7,90 @@ class UserController {
     async show(req, res, next) {
         try {
             console.log(req.query);
+            // Get query
             const key = req.query?.key?.trim();
+            const sortType = req.query?.sortType?.trim();
             let gender = req.query?.gender?.trim();
-            if (gender === "all") {
-                gender = "";
+            let limit = 10;
+            let page = 1;
+
+            // Validate query 
+            if (gender === "all"){ gender = ""; }
+            if (parseInt(req.query?.limit) > 1) {
+                limit = parseInt(req.query?.limit) || 10;
             }
-            const page = parseInt(req.query?.page) || 1;
-            const limit = parseInt(req.query?.limit) || 10;
+            console.log(limit);
+            if (parseInt(req.query?.page) > 1) {
+                page = parseInt(req.query?.page) || 1;
+            }
+            if (sortType !== "" && sortType !== undefined) {
+                const sortTypeList = sortType.split(",")
+                console.log("sortTypeList =", sortTypeList);
+            }
     
             const startIndex = (page - 1) * limit;
             const searchType = []; // Biến để xác định loại tìm kiếm
-    
-            // Search user with Key and Gender
+            // Cases search -----------------------------------------------------------------
+            // Case search user with Key and Gender
             if (gender !== "" && gender !== undefined && key !== "" && key !== undefined) {
                 console.log("Search with Key and Gender");
                 searchType.push("Search with Key and Gender");
             }
-    
             // Search user with key
             else if (key !== "" && key !== undefined) {
                 console.log("Search with key");
                 searchType.push("Search with Key");
             }
-    
             // Search user with Gender
             else if (gender !== "" && gender !== undefined) {
                 console.log("Search with Gender");
                 searchType.push("Search with Gender");
             }
-    
             // Show all user
             else {
                 console.log("Show all");
                 searchType.push("Show all user");
             }
     
-            // Init condition search
+            // Init conditions search
             const conditions = {};
     
+            // add condition key
             if (key) {
-                conditions.$text = { $search: key }; // add condition key
+                conditions.$text = { $search: key};
+                conditions.$or = [
+                    {name: { $regex: key, $options: "i" }},
+                ]; 
             }
     
+            // add condition gender
             if (gender) {
                 conditions.$or = [
-                    {name: { $regex: key }},
-                    {sex: { $regex: gender }},
-                ]; // add condition gender
+                    {sex: { $regex: gender, $options: "i" }},
+                ];
             }
             console.log(conditions);
             
             const totalResults = await User.countDocuments(conditions);
+
             const data = await User.find(conditions).skip(startIndex).limit(limit).sort({ "name": 1 });
     
+            // Vallidate data result 
             if (data.length === 0) {
                 return res.status(200).send({ code: 13, message: "Data is empty!!!" });
-            }
-            console.log({
-                code: 12,
-                data: data,
-                type: searchType.join(", "),
-                currentPage: page,
-                totalPages: Math.ceil(totalResults / limit)
-            });
+            } 
+
+            // Sort data -------
+
+            
+            // return list user to client
             return res.status(200).send({
                 code: 12,
                 data: data,
                 type: searchType.join(", "),
                 currentPage: page,
-                totalPages: Math.ceil(totalResults / limit)
+                totalPages: Math.ceil(totalResults / limit),
+                totalResults: totalResults,
             });
         }
         catch (error) {
@@ -83,11 +98,6 @@ class UserController {
             return res.status(500).send({ message: "Server error" });
         }
     }
-    
-
-    // softUser {
-
-    // }
 
     // [GET] /users/formCreate
     formCreate(req, res, next) {
