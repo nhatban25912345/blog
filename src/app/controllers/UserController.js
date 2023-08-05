@@ -9,6 +9,7 @@ class UserController {
             console.log("");
             console.log("Search api ----------------------------------");
             console.log("req.query =", req.query);
+
             // Get query
             const key = req.query?.key?.trim();
             const sortType = req.query?.sortType?.trim();
@@ -17,7 +18,7 @@ class UserController {
             let page = 1;
 
             // Validate query 
-            if (gender === "all"){ gender = ""; }
+            if (gender == "all" || gender == "All"){ gender = ""; }
             if (parseInt(req.query?.limit) > 1) {
                 limit = parseInt(req.query?.limit) || 10;
             }
@@ -85,22 +86,15 @@ class UserController {
     
             // Vallidate data result 
             if (data.length === 0) {
-                return res.status(200).send({ code: 13, message: "Data is empty!!!" });
+                return res.status(200).send({ code: 13, message: "Data is empty!!!", data: [] });
             } 
 
             // Sort data -------
             
-            // console.log(
-            //     "return data: ",
-            //     res.status(200).send({
-            //         code: 12,
-            //         data: data,
-            //         type: searchType.join(", "),
-            //         currentPage: page,
-            //         totalPages: Math.ceil(totalResults / limit),
-            //         totalResults: totalResults,
-            //     })
-            // );
+            console.log(
+                "return data: ",
+                data
+            );
 
             // return list user to client
             return res.status(200).send({
