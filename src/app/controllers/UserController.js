@@ -6,12 +6,14 @@ class UserController {
     // [GET] /users
     async show(req, res, next) {
         try {
-            console.log(req.query);
+            console.log("");
+            console.log("Search api ----------------------------------");
+            console.log("req.query =", req.query);
             // Get query
             const key = req.query?.key?.trim();
             const sortType = req.query?.sortType?.trim();
             let gender = req.query?.gender?.trim();
-            let limit = 10;
+            let limit = 3;
             let page = 1;
 
             // Validate query 
@@ -19,7 +21,6 @@ class UserController {
             if (parseInt(req.query?.limit) > 1) {
                 limit = parseInt(req.query?.limit) || 10;
             }
-            console.log(limit);
             if (parseInt(req.query?.page) > 1) {
                 page = parseInt(req.query?.page) || 1;
             }
@@ -33,22 +34,22 @@ class UserController {
             // Cases search -----------------------------------------------------------------
             // Case search user with Key and Gender
             if (gender !== "" && gender !== undefined && key !== "" && key !== undefined) {
-                console.log("Search with Key and Gender");
+                console.log("Type Search: Search with Key and Gender");
                 searchType.push("Search with Key and Gender");
             }
             // Search user with key
             else if (key !== "" && key !== undefined) {
-                console.log("Search with key");
+                console.log("Type Search: Search with key");
                 searchType.push("Search with Key");
             }
             // Search user with Gender
             else if (gender !== "" && gender !== undefined) {
-                console.log("Search with Gender");
+                console.log("Type Search: Search with Gender");
                 searchType.push("Search with Gender");
             }
             // Show all user
             else {
-                console.log("Show all");
+                console.log("Type Search: Show all");
                 searchType.push("Show all user");
             }
     
@@ -69,11 +70,18 @@ class UserController {
                     {sex: { $regex: gender, $options: "i" }},
                 ];
             }
-            console.log(conditions);
-            
-            const totalResults = await User.countDocuments(conditions);
+            console.log("Điều kiện search = ", conditions);
 
+            // let totalResults;
+            // if ( Object.keys(conditions).length === 0 ) {
+            //     totalResults = await User.find(conditions).countDocuments();
+            //     console.log(totalResults);
+            // }
+            // totalResults = await User.find(conditions).countDocuments();
+
+            const totalResults = await User.find(conditions).countDocuments();
             const data = await User.find(conditions).skip(startIndex).limit(limit).sort({ "name": 1 });
+
     
             // Vallidate data result 
             if (data.length === 0) {
@@ -81,8 +89,19 @@ class UserController {
             } 
 
             // Sort data -------
-
             
+            // console.log(
+            //     "return data: ",
+            //     res.status(200).send({
+            //         code: 12,
+            //         data: data,
+            //         type: searchType.join(", "),
+            //         currentPage: page,
+            //         totalPages: Math.ceil(totalResults / limit),
+            //         totalResults: totalResults,
+            //     })
+            // );
+
             // return list user to client
             return res.status(200).send({
                 code: 12,
