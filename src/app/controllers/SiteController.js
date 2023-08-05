@@ -1,5 +1,6 @@
 const Course = require("../models/Course");
 const { multipleMongooseToObject } = require("../../util/mongoose");
+const path = require("path");
 
 class SiteController {
 

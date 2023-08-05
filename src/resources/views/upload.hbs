@@ -1,0 +1,36 @@
+<form method="POST" action="multiple-upload" enctype="multipart/form-data">
+  <div class="mb-3">
+    <h1>Upload File</h1>
+  </div>
+  <div class="mb-3">
+    <label for="multi-files" class="form-label">File 1</label>
+    <input name="multi-files" type="file" class="form-control" id="input-images" placeholder="file1...">
+  </div>
+  {{!-- <div class="mb-3">
+    <label for="file2" class="form-label">File 2</label>
+    <input name="file2" type="file" class="form-control" value="metaway2023"  id="file2" placeholder="file2...">
+  </div> --}}
+  <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+<script>
+      $(document).ready(function() {
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+          if (input.files) {
+            let filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+              let reader = new FileReader();
+              reader.onload = function(event) {
+                $($.parseHTML("<img>"))
+                  .attr("src", event.target.result)
+                  .appendTo(placeToInsertImagePreview);
+              };
+              reader.readAsDataURL(input.files[i]);
+            }
+          }
+        };
+        $("#input-images").on("change", function() {
+          imagesPreview(this, "div.preview-images");
+        });
+      });
+</script>
